@@ -1,0 +1,35 @@
+﻿@page
+@model Tareas.Pages.ExpresionModel
+@{
+}
+
+<div style="display: flex;">
+    <h3>Expresión</h3>
+    <strong style="margin-left: 1px;color: #bd2626;"><h3>(ax+by)n</h3></strong>
+</div>
+
+<div class="row col-4">
+    <form method="POST">
+        <p>Ingresar el valor de a: <input class="form-control" type="number" asp-for="a" /></p>
+        <p>Ingresar el valor de b: <input class="form-control" type="number" asp-for="b" /></p>
+        <p>Ingresar el valor de x: <input class="form-control" type="number" asp-for="x" /></p>
+        <p>Ingresar el valor de y: <input class="form-control" type="number" asp-for="y" /></p>
+        <p>Ingresar el valor de n: <input class="form-control" type="number" asp-for="n" /></p>
+        <p><input class="btn btn-primary" type="submit" value="Calcular" /></p>
+
+        @if (@Model.resultados != null && @Model.resultados.Length > 0)
+        {
+            <div>
+                <strong>Resultados:</strong>
+                <ul>
+                    @for (int k = 0; k < @Model.resultados.Length; k++)
+                    {
+                        <li>k=@k: @Model.resultados[k]</li>
+                    }
+                </ul>
+                <strong>Total: @Model.sumaResultado</strong>
+            </div>
+        }
+    </form>
+
+</div>

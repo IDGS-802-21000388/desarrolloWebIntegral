@@ -1,0 +1,32 @@
+﻿@page
+@model Tareas.Pages.MasaCorporalModel
+@{
+    ViewData["Title"] = "Calcular IMC";
+}
+
+<h1>Calcular Índice de Masa Corporal (IMC)</h1>
+
+<form method="POST">
+    <div class="row col-6">
+        <div>
+            <label for="peso">Peso (kg):</label>
+            <input class="form-control" type="number" step="0.01" id="peso" asp-for="peso" />
+        </div>
+        <div>
+            <label for="altura">Altura (m):</label>
+            <input class="form-control" type="number" step="0.01" id="altura" asp-for="altura" />
+        </div>
+        <button class="btn btn-primary m-2" type="submit" style="width: 20%;font-size: 15px;" >Calcular IMC</button>
+    </div>
+    
+</form>
+
+@if (Model.IMC > 0)
+{
+    <div>
+        <h2>Resultado</h2>
+        <p>Tu IMC es: @Model.IMC</p>
+        <p>Clasificación: @Model.mensaje</p>
+        <img style="height: 250px;" src="@Model.imagen" alt="imagen" />
+    </div>
+}

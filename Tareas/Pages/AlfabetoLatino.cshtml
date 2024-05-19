@@ -1,0 +1,24 @@
+﻿@page
+@model Tareas.Pages.AlfabetoLatinoModel
+@{
+}
+
+<h3> Alfabeto Latino </h3>
+
+<form method="post">
+    <div class="row col-6">
+        <p>
+            Ingresa el mensaje: <input class="form-control" type="text" asp-for="Mensaje" />
+        </p>
+        <p>
+            Ingresa el valor de n: <input class="form-control" type="number" asp-for="ValorN" />
+        </p>
+        <p>
+            <input type="submit" class="btn btn-primary" value="Cifrar" name="accion" />
+            <input type="submit" class="btn btn-warning" value="Descifrar" name="accion" />
+        </p>
+            <div>
+                <strong>Resultado: @Model.Resultado</strong>
+            </div>
+    </div>
+</form>

@@ -1,0 +1,52 @@
+﻿@page
+@model Tareas.Pages.ArregloModel
+@{
+    Random random = new Random();
+
+    int[] arrayNumeros = new int[20];
+    int suma = 0;
+    double promedio = 0.0;
+    double mediana = 0.0;
+
+    for (int i = 0; i < arrayNumeros.Length; i++)
+    {
+        arrayNumeros[i] = random.Next(1, 101);
+        suma += arrayNumeros[i];
+    }
+
+    promedio = suma / 20.0;
+
+    int[] arrayNumerosOrdenados = (int[])arrayNumeros.Clone();
+    Array.Sort(arrayNumerosOrdenados);
+
+    mediana = (arrayNumerosOrdenados[9] + arrayNumerosOrdenados[10]) / 2.0;
+
+
+    var gruposNumerosRepetidos = arrayNumeros.GroupBy(x => x)
+                                        .OrderByDescending(g => g.Count());
+
+    var counts = gruposNumerosRepetidos.First().Count();
+
+    var numerosMasRepetidos = gruposNumerosRepetidos
+                               .Where(g => g.Count() == counts)
+                               .Select(g => g.Key)
+                               .ToList();
+}
+
+<p><strong>Arreglo aleatorio</strong></p>
+
+@string.Join(", ", arrayNumeros)
+
+<p><strong>Suma:</strong> @suma </p>
+<p><strong>Promedio:</strong> @promedio </p>
+
+<p><strong>Arreglo ordenado</strong></p>
+@string.Join(", ", arrayNumerosOrdenados)
+<br/>
+<p><strong>Moda:</strong></p>
+@foreach (var numero in numerosMasRepetidos)
+{
+    <li>@numero</li>
+}
+
+<p><strong>Mediana (@arrayNumerosOrdenados[9] + @arrayNumerosOrdenados[10]) / 2:</strong> @mediana</p>
